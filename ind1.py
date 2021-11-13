@@ -13,6 +13,9 @@
 
 def main(a1, a2):
     def replace(rep_str):
+        if a1 == '' or a2 == '' or rep_str == '':
+            return None
+
         new_str = list(rep_str)
         for i, v in enumerate(new_str):
             if v == a1:
