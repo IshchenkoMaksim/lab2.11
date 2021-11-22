@@ -10,21 +10,22 @@
 # внутренней функцией. Вызовите внутреннюю функцию замыкания
 # и отобразите на экране результат ее работы
 
+import re
 
-def main(a1, a2):
+
+def main(replaceable, replacement):
     def replace(rep_str):
-        if a1 == '' or a2 == '' or rep_str == '':
+        if replacement == '' or replaceable == '' or rep_str == '':
             return None
 
-        new_str = list(rep_str)
-        for i, v in enumerate(new_str):
-            if v == a1:
-                new_str[i] = a2
-        return ''.join(new_str)
+        return re.sub(rf'({replaceable})\1+', replacement, rep_str)
 
     return replace
 
 
 if __name__ == '__main__':
-    print(main(input("Введите заменяемый символ: "),
-               input("Введите заменяющий символ: "))(input("Введите стоку: ")))
+    replaceable_s = input("Введите заменяемый символ: ")
+    replacement_s = input("Введите заменяющий символ: ")
+    string = input("Введите строку: ")
+    func_rep = main(replaceable_s, replacement_s)
+    print(func_rep(string))
